@@ -3,7 +3,7 @@ package com.schneeloch.receiptreader;
 import android.app.Activity;
 import android.os.Bundle;
 
-public class Main extends Activity
+public class SummaryActivity extends Activity
 {
     /** Called when the activity is first created. */
     @Override
