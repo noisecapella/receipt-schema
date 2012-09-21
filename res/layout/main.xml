@@ -3,11 +3,17 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@color/eggshell"
     >
-<TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
+
+<TextView
+    android:id="@+id/textView"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
     android:text="Hello World, Main"
-    />
+    android:textColor="@android:color/black"
+    android:typeface="monospace" />
+
 </LinearLayout>
 

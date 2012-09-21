@@ -6,6 +6,8 @@ A schema to encode restaurant receipt info in a URL for a [QR code](http://en.wi
 Schema
 ------
 
+This should be considered schema version 0.001, or something to that effect.
+
 Something which is compact and describes the essentials of a receipt, for easy import into Quicken or easy bill splitting.
 
 This must be compact to make the QR code as easy to scan as possible. I'm not sure whether the roughly 4000 character limit will matter for restaurant receipts.
@@ -27,12 +29,13 @@ Other keys:
 
 - t -- tax as a percentage
 - u -- currency symbol
-- pt -- total already paid
-- e (for establishment) - descriptive message for establishment, which may include newlines
-- d -- date of transaction
+- pt -- total already paid. If blank, assumes no payment already made.
+- en (for establishment) -- name of establishment
+- ed (for establishment) -- descriptive message for establishment, which may include newlines
+- d -- date of transaction, as a unix timestamp
 - o -- order number
-- a -- address of establishment. May include phone, email, or physical address
-- x -- extra descriptive text at bottom of receipt
+- a -- address of establishment as text. May include phone, email, or physical address
+- x -- extra descriptive text at bottom of receipt (ie, "Have a nice day!")
 
 App
 ---
