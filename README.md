@@ -14,9 +14,11 @@ I'm writing this with a scheme `receipt://`, although this could work with an HT
 
 Example for an order of saag paneer and naan for 9.95
 
-`receipt://X/?i1d=SAAG%20M'ROOM+NAN%20T1&i1p=9.95&t=7.00&u=%24`
+`receipt://X/?i1d=SAAG%20M'ROOM+NAN%20T1&i1p=9.95&t=7.00&u=%24&e=Punjabi%20Dhaba%0AThe%20Indian%20Highway-Side%20Cafe`
 
 Items are prefixed i(num), where num starts at 1 and increments like most numbers do, per item on the receipt.
+
+Per-item keys:
 
 - i(num)d -- description or title of item
 - i(num)p -- price
@@ -25,6 +27,12 @@ Other keys:
 
 - t -- tax as a percentage
 - u -- currency symbol
+- pt -- total already paid
+- e (for establishment) - descriptive message for establishment, which may include newlines
+- d -- date of transaction
+- o -- order number
+- a -- address of establishment. May include phone, email, or physical address
+- x -- extra descriptive text at bottom of receipt
 
 App
 ---
