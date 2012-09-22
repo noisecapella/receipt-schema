@@ -19,12 +19,12 @@ public class SummaryActivity extends Activity
         setContentView(R.layout.main);
         
         textView = (TextView)findViewById(R.id.textView);
-        textView.setText(receiptData.getLayout());
 
         Display display = getWindowManager().getDefaultDisplay();
         
         Uri uri = getIntent().getData();
-        receiptData = new ReceiptData(uri, textView.getPaint(), display.getWidth());
+        receiptData = new ReceiptData(uri, textView.getPaint(), display);
+        textView.setText(receiptData.getLayout());
         
     }
 }

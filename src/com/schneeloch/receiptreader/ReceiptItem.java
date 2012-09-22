@@ -3,19 +3,23 @@ package com.schneeloch.receiptreader;
 import java.math.BigDecimal;
 
 import android.graphics.Paint;
+import android.graphics.Rect;
+import android.view.Display;
 
 public class ReceiptItem {
 	private final BigDecimal price;
 	private final String description;
 	private final Paint paint;
 	private final int displayWidth;
-	public ReceiptItem(String description, BigDecimal price, Paint paint, int displayWidth) {
+	private final int displayHeight;
+	public ReceiptItem(String description, BigDecimal price, Paint paint, Display display) {
 		if (description == null || price == null || paint == null) {
 			throw new NullPointerException();
 		}
 		this.description = description;
 		this.price = price;
-		this.displayWidth = displayWidth;
+		this.displayWidth = display.getWidth();
+		this.displayHeight = display.getHeight();
 		this.paint = paint;
 	}
 	
@@ -30,6 +34,7 @@ public class ReceiptItem {
 	public String makeItemText() {
 		StringBuilder ret = new StringBuilder();
 		ret.append(description);
+
 		float descriptionWidth = paint.measureText(description);
 		float priceWidth = paint.measureText(price.toString());
 		float remainderWidth = displayWidth - priceWidth - descriptionWidth;

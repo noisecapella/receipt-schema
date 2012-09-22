@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
+import android.view.Display;
 
 public class ReceiptData {
 	// these fields may be null if not specified in URL
@@ -39,9 +40,9 @@ public class ReceiptData {
 			new HashMap<String, String>();
 			
 	
-	private final static String formattingLayout = "%en\n%ed\n%i\n%o\n%a\n%x\n";
+	private final static String formattingLayout = "%en\n%ed\n*%i\n*%o\n%a\n%x\n";
 	
-	public ReceiptData(Uri uri, Paint paint, int displayWidth) {
+	public ReceiptData(Uri uri, Paint paint, Display display) {
 		tax = parseBigDecimal(uri, TAX_KEY, null);
 		textRepresentation.put(TAX_KEY, tax != null ? "Tax: " + tax : "");
 
@@ -74,7 +75,7 @@ public class ReceiptData {
 		while (itemDescription != null && itemDescription.length() > 0) {
 			BigDecimal itemPrice = parseBigDecimal(uri, itemPriceKey(i), null);
 			ReceiptItem item = new ReceiptItem(itemDescription, itemPrice, 
-					paint, displayWidth);
+					paint, display);
 			items.add(item);
 			
 			i += 1;
