@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import android.graphics.Paint;
 import android.net.Uri;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -34,18 +35,13 @@ public class ReceiptData {
 	private final static String ADDRESS_KEY = "a";
 	private final static String XTRA_KEY = "x";
 	
-	private final static String[] ALL_KEYS = {
-		TAX_KEY, UNIT_KEY, PAID_TOTAL_KEY, ESTABLISHMENT_NAME_KEY,
-		ESTABLISHMENT_DESCRIPTION_KEY, DATE_KEY, ORDER_KEY, ADDRESS_KEY, XTRA_KEY
-	};
-	
 	private final HashMap<String, String> textRepresentation = 
 			new HashMap<String, String>();
 			
 	
 	private final static String formattingLayout = "%en\n%ed\n%i\n%o\n%a\n%x\n";
 	
-	public ReceiptData(Uri uri) {
+	public ReceiptData(Uri uri, Paint paint, int displayWidth) {
 		tax = parseBigDecimal(uri, TAX_KEY, null);
 		textRepresentation.put(TAX_KEY, tax != null ? "Tax: " + tax : "");
 
@@ -75,9 +71,10 @@ public class ReceiptData {
 		
 		int i = 1;
 		String itemDescription = parseString(uri, itemDescriptionKey(i), "");
-		while (itemDescription == null || itemDescription.length() == 0) {
+		while (itemDescription != null && itemDescription.length() > 0) {
 			BigDecimal itemPrice = parseBigDecimal(uri, itemPriceKey(i), null);
-			ReceiptItem item = new ReceiptItem(itemDescription, itemPrice);
+			ReceiptItem item = new ReceiptItem(itemDescription, itemPrice, 
+					paint, displayWidth);
 			items.add(item);
 			
 			i += 1;
@@ -159,6 +156,19 @@ public class ReceiptData {
 		for (String key : textRepresentation.keySet()) {
 			ret = ret.replaceAll("%" + key, textRepresentation.get(key));
 		}
+		
+		ret = ret.replaceAll("%i", makeItemsText().toString());
+		
+		return ret;
+	}
+
+	private CharSequence makeItemsText() {
+		StringBuilder ret = new StringBuilder();
+		
+		for (ReceiptItem item : items) {
+			ret.append(item.makeItemText());
+		}
+		
 		return ret;
 	}
 }

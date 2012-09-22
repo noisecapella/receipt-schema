@@ -14,7 +14,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:scheme="receipt" />
+                <data android:scheme="http" android:host="georgeschneeloch.com" android:pathPrefix="/rcpt/" />
             </intent-filter>
         </activity>
     </application>

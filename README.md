@@ -16,7 +16,7 @@ I'm writing this with a scheme `receipt://`, although this could work with an HT
 
 Example for an order of saag paneer and naan for 9.95
 
-`receipt://X/?i1d=SAAG%20M'ROOM+NAN%20T1&i1p=9.95&t=7.00&u=%24&e=Punjabi%20Dhaba%0AThe%20Indian%20Highway-Side%20Cafe`
+`http://georgeschneeloch.com/rcpt/?i1d=SAAG%20M'ROOM+NAN%20T1&i1p=9.95&t=7.00&u=%24&e=Punjabi%20Dhaba%0AThe%20Indian%20Highway-Side%20Cafe&x=WE%20CATER%20FOR%20PARTIES`
 
 Items are prefixed i(num), where num starts at 1 and increments like most numbers do, per item on the receipt.
 
